@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface Idados {
   nome?: string
@@ -29,7 +29,6 @@ export const Produto = () => {
       .then(json => setDados(json))
   }, [])
 
-  console.log(preference)
 
   return (
     <div>
@@ -47,5 +46,3 @@ export const Produto = () => {
     </div >
   )
 }
-
-'https://ranekapi.origamid.dev/json/api/produto'
