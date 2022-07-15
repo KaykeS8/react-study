@@ -1,19 +1,15 @@
 import React from 'react'
-import { GlobalContext } from './GlobalContext';
-
+import { GlobalContext } from './GlobalContext'
 
 export const Produto = () => {
-
   const dados = React.useContext(GlobalContext)
-  const { count, addCountOne } = dados
+  const { count, addProducts } = dados
+
 
   return (
     <div>
-      <button onClick={() => addCountOne()}>Adicionar</button>
-      <br />
-      Prouduto:{count}
-      <br />
-      status: Em estoque
+      <button onClick={() => addProducts()}>Adicionar produto</button>
+      <p>Produto: {count}</p>
     </div>
   )
 }
