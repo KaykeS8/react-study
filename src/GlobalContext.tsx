@@ -1,22 +1,22 @@
 import React from 'react'
 
-interface IGlobalChildren {
+interface ChildrenContext {
   children: React.ReactNode
 }
 
-interface GlobalContextInterface {
+interface IvalueContext {
   count: number
-  addCountOne: () => void
+  addProducts: () => void
 }
 
-export const GlobalContext = React.createContext({} as GlobalContextInterface)
+export const GlobalContext = React.createContext({} as IvalueContext)
 
-export const GlobalStorage = ({ children }: IGlobalChildren) => {
+export const GlobalStorage = ({ children }: ChildrenContext) => {
   const [count, setCount] = React.useState<number>(0)
 
-  function addCountOne() {
+  function addProducts() {
     setCount(count + 1)
   }
 
-  return <GlobalContext.Provider value={{ addCountOne, count }}>{children}</GlobalContext.Provider>
+  return <GlobalContext.Provider value={{ addProducts, count }}>{children}</GlobalContext.Provider>
 }
