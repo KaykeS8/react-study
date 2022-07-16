@@ -16,7 +16,7 @@ const App = () => {
       const { json, response } = await request("https://ranekapi.origamid.dev/json/api/produto/")
     }
     fetchData()
-  }, []);
+  }, [request]);
 
 
   const handleClick = ({
