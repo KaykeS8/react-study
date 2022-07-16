@@ -1,14 +1,20 @@
-import React, { useMemo, useState } from 'react';
-import { Produto } from './Produto'
-import { GlobalStorage } from './GlobalContext';
-import { Limpar } from './Limpar';
+import React from 'react';
+import { useLocalStorage } from './useLovalStorage';
 
 const App = () => {
+
+  const [produto, setProduto] = useLocalStorage('Produto', '')
+
+  const handleClick = ({ currentTarget }: React.MouseEvent<HTMLButtonElement>) => {
+    setProduto(currentTarget.innerText)
+  }
+
   return (
-    <GlobalStorage>
-      <Produto />
-      <Limpar/>
-    </GlobalStorage>
+    <div>
+      <h2>Produto preferido: {produto}</h2>
+      <button onClick={handleClick}>Notebook</button>
+      <button onClick={handleClick}>smartphone</button>
+    </div>
   )
 }
 
