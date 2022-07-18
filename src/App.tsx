@@ -1,47 +1,115 @@
 import React from "react";
-import { useLocalStorage } from "./useLovalStorage";
 import { useFetch } from "./useFetch";
 
-type Tproduto = {
-  nome: string;
+interface FormTypes {
   id: string;
-};
+  label: string;
+  type: string;
+}
+
+const formFields = [
+  {
+    id: "nome",
+    label: "Nome",
+    type: "text",
+  },
+  {
+    id: "email",
+    label: "Email",
+    type: "email",
+  },
+  {
+    id: "senha",
+    label: "Senha",
+    type: "password",
+  },
+  {
+    id: "cep",
+    label: "Cep",
+    type: "text",
+  },
+  {
+    id: "rua",
+    label: "Rua",
+    type: "text",
+  },
+  {
+    id: "bairro",
+    label: "Bairro",
+    type: "text",
+  },
+  {
+    id: "cidade",
+    label: "Cidade",
+    type: "text",
+  },
+  {
+    id: "estado",
+    label: "Estado",
+    type: "text",
+  },
+];
 
 const App = () => {
-  const [produto, setProduto] = useLocalStorage("Produto", "");
-  const { request, data, loading, error } = useFetch();
+  const [form, setForm] = React.useState<any>({
+    nome: "",
+    email: "",
+    senha: "",
+    cep: "",
+    rua: "",
+    bairro: "",
+    cidade: "",
+    estado: "",
+  });
+  const [sendForm, setSendoForm] = React.useState<string | null>(null);
+  const { request } = useFetch();
 
-  React.useEffect(() => {
-    async function fetchData() {
-      const { json, response } = await request("https://ranekapi.origamid.dev/json/api/produto/")
+  function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
+    const { id, value } = target;
+    setForm({ ...form, [id]: value });
+  }
+
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    async function fetchPost() {
+      const { response, json } = await request(
+        "https://ranekapi.origamid.dev/json/api/usuario",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
+      setSendoForm(() => {
+        return response?.status === 200 ? "Formulario enviado" : "Ocorreu um erro";
+      });
+      setTimeout(() => {
+        setSendoForm(null);
+      }, 2000);
     }
-    fetchData()
-  }, [request]);
+    fetchPost();
+  }
 
-
-  const handleClick = ({
-    currentTarget,
-  }: React.MouseEvent<HTMLButtonElement>) => {
-    setProduto(currentTarget.innerText);
-  };
-
-
-  if (error) return <p>{error}</p>
-  if (loading) return <p>...Carregando</p>
-  if (data)
-    return (
-      <div>
-        <h2>Produto preferido: {produto}</h2>
-        <button onClick={handleClick}>notebook</button>
-        <button onClick={handleClick}>smartphone</button>
-        {data.map((produto: Tproduto) => (
-          <div key={produto.id}>
-            <h1>{produto.nome}</h1>
-          </div>
-        ))}
-      </div>
-    );
-  else return null
+  return (
+    <form onSubmit={handleSubmit}>
+      {formFields.map(({ id, label, type }: FormTypes) => (
+        <div key={id}>
+          <label htmlFor={id}>{label}</label>
+          <input
+            type={type}
+            id={id}
+            onChange={handleChange}
+            value={form[id]}
+            name={id}
+          />
+        </div>
+      ))}
+      {sendForm && <p>{sendForm}</p>}
+      <button>Enviar</button>
+    </form>
+  );
 };
 
 export default App;
