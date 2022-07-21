@@ -1,49 +1,42 @@
 import React from "react";
-import { X } from "phosphor-react";
+import { Input } from "./Form/Input";
+import { Radio } from "./Form/Radio";
+import { Select } from './Form/Selects'
+import { CheckBox } from "./Form/CheckBox";
+
+const estilo = {
+  display: "block",
+  marginTop: "10px",
+  padding: "2px 4px",
+  cursor: "pointer"
+}
 
 const App = () => {
-  const [text, setText] = React.useState<string>("");
-  const [message, setMessage] = React.useState<string[]>([]);
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [nome, setNome] = React.useState("");
+  const [email, setEmail] = React.useState("");
 
-  function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
-    setText(target.value);
-  }
-
-  function addMessage() {
-    setMessage(() => {
-      return text.length > 0 ? [...message, text] : [...message];
-    });
-    setText("");
-    inputRef.current?.focus();
-  }
-
-  function removeMessage() {
-    console.log("removeu");
-    setMessage(message.filter((item,index,array) => {
-      return array[index] !== message[index]
-    }));
-  }
+  const [select, setSelect] = React.useState('');
+  const [genere, setGenere] = React.useState('')
+  const [cor, setCor] = React.useState('')
+  const [skills, setSkills] = React.useState<string[]>([])
+  const [termos, setTermos] = React.useState<string[]>([])
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <input
-        type="text"
-        ref={inputRef}
-        name="texto"
-        id="texto"
-        placeholder="digite sua messagem"
-        value={text}
-        onChange={handleChange}
-      />
-      <button onClick={addMessage}>Adicionar tarefa</button>
-      <h2>Tarefas</h2>
-      {message.map((item, index) => (
-        <li key={index} style={{ display: "flex", alignItems: "center" }}>
-          {item}
-          <X style={{ cursor: "pointer" }} onClick={removeMessage} />
-        </li>
-      ))}
+    <form>
+      <Input label="Nome" type="text" id="nome" value={nome} setValue={setNome} required />
+      <Input label="Email" type="email" id="email" value={email} setValue={setEmail} />
+      <Select options={['smartphone', 'notebook', 'carro']} value={select} setValue={setSelect} />
+      <h2>Gênero</h2>
+      <Radio options={['masculino', 'femenino']} value={genere} setValue={setGenere} name="genero" />
+      <h2>Cores</h2>
+      <Radio options={['black', 'gray', 'white', 'blue', 'red']} value={cor} setValue={setCor} name="cor" />
+      <h2>Habilidades</h2>
+      <CheckBox options={['front-end', 'back-end', 'fullstack']} value={skills} setValue={setSkills} />
+
+      <h2>Termos</h2>
+      <CheckBox options={['li e aceito os termos']} value={termos} setValue={setTermos} />
+      {termos.length > 0 ? <p>Termos aceitos</p> : null}
+      <button style={estilo}>Enviar</button>
     </form>
   );
 };
