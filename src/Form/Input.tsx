@@ -6,7 +6,7 @@ interface PropsInput {
   id: string;
   value: string;
   setValue: (item: string) => void;
-  required?:any
+  required?: any;
 }
 
 export const Input = ({ label, type, id, value, setValue, ...props }: PropsInput) => {
