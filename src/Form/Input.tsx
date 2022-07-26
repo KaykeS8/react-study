@@ -1,29 +1,22 @@
-import React from "react";
+import React from 'react';
 
 interface PropsInput {
-  label: string;
   type: string;
-  id: string;
   value: string;
-  setValue: (item: string) => void;
-  required?: any;
+  onChange: ({target}:React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  id: string;
+  placeholder?: any
+  onBlur: any;
 }
 
-export const Input = ({ label, type, id, value, setValue, ...props }: PropsInput) => {
-  function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
-    setValue(target.value);
-  }
+
+export const Input = ({ id, label, onChange, type, value, ...props }: PropsInput) => {
+
   return (
     <div>
       <label htmlFor={id}>{label}</label>
-      <input
-        type={type}
-        name={id}
-        id={id}
-        value={value}
-        onChange={handleChange}
-        {...props}
-      />
+      <input type={type} id={id} name={id} value={value} onChange={onChange} {...props} />
     </div>
-  );
-};
+  )
+}

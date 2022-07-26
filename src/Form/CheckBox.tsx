@@ -1,30 +1,32 @@
 import React from 'react';
 
-
-interface PropsCheckBox {
+interface PropsCheckbox {
   options: string[];
-  value: string[]
-  setValue: (item: string[]) => void
+  value: string[];
+  setValue: (item: string[]) => void;
+  title: string
 }
 
-export const CheckBox = ({ options, value, setValue, ...props }: PropsCheckBox) => {
+export const CheckBox = ({ options, setValue, value, title }: PropsCheckbox) => {
+
 
   function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
     if (target.checked) {
       setValue([...value, target.value])
     } else {
-      setValue(value.filter(skill => skill !== target.value))
+      setValue(value.filter(item => item !== target.value))
     }
   }
 
   return (
-    <>
-      {options.map(option => (
-        <label key={option} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <input type="checkbox" value={option} onChange={handleChange} checked={value.includes(option)} {...props} />
-          {option}
+    <div>
+      <h2>{title}</h2>
+      {options.map(item => (
+        <label key={item} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <input type="checkbox" value={item} checked={value.includes(item)} onChange={handleChange} />
+          {item}
         </label>
       ))}
-    </>
+    </div>
   )
 }
