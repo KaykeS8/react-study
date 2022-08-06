@@ -1,29 +1,21 @@
-import React from 'react';
+import { Box, Heading } from '@chakra-ui/react';
+import { PropsRadio } from '../tipagens';
 
 
-interface PropsRadio {
-  options: string[];
-  value: string;
-  setValue: (item: string) => void;
-  name: string;
-  title: string;
-}
-
-export const Radio = ({ name, options, setValue, value, title,...props }: PropsRadio) => {
-
-  function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
-    setValue(target.value)
-  }
-
+export const Radio = ({ pergunta, options, id, onChange, value, active }: PropsRadio) => {
   return (
-    <div>
-      <h2>{title}</h2>
-      {options.map(opt => (
-        <label key={opt} style={{display:'flex', alignItems:'center', gap:'10px'}}>
-          <input type="radio" name={name} id={name} value={opt} checked={value === opt} onChange={handleChange} {...props}/>
-          {opt}
-        </label>
-      ))}
-    </div>
+    <>
+      {active ? (
+        <Box border={'1px solid gray'} p={4} m={4}>
+          <Heading size={'md'} mb={2}>{pergunta}</Heading>
+          {options.map(option => (
+            <label key={option} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontFamily: 'monospace' }}>
+              <input type={'radio'} id={id} value={option} onChange={onChange} checked={value === option} />
+              {option}
+            </label>
+          ))}
+        </Box>
+      ) : null}
+    </>
   )
 }
