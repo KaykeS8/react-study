@@ -1,0 +1,10 @@
+.titulo, .preco {
+  color: #43c;
+}
+
+@value cor: red;
+
+.preco {
+  color: cor;
+  font-weight:bold;
+}
