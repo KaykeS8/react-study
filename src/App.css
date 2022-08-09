@@ -1,0 +1,10 @@
+.fundo {
+  height: 50px;
+  width: 50px;
+  background-image: url('./img/foto.jpg');
+  border-radius: 50%;
+  overflow: hidden;
+  background-size: cover;
+  margin: 1rem;
+  cursor: pointer;
+}
