@@ -8,3 +8,7 @@
   margin: 1rem;
   cursor: pointer;
 }
+
+.active {
+  color: #A0BED7;
+}
