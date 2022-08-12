@@ -1,21 +1,38 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Container, Heading } from "./style";
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  Stack,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import "../../App.css";
 
 export const Header = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <Heading>
-      <Container>
-        <h1>Logo</h1>
-        <nav>
-          <NavLink to={"/"} end>
-            Home
-          </NavLink>{" "}
-          | <NavLink to={"/sobre"}>Sobre</NavLink> |{" "}
-          <NavLink to={"/login"}>Login</NavLink>
-        </nav>
+    <Box bg={useColorModeValue("gray.300", "gray.500")} p={3}>
+      <Container
+        display={"flex"}
+        alignItems={"center"}
+        maxW={"960px"}
+        justifyContent={"space-between"}
+      >
+        <Heading>Logo</Heading>
+        <Stack direction={'row'} gap={2} alignItems={"center"}>
+          <Button onClick={toggleColorMode}>
+            {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
+          </Button>
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={'/sobre'}>Sobre</NavLink>
+          <NavLink to={'/login'}>Login</NavLink>
+        </Stack>
       </Container>
-    </Heading>
+    </Box>
   );
 };
