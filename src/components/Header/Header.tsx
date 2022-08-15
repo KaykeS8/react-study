@@ -16,7 +16,7 @@ export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box bg={useColorModeValue("gray.300", "gray.500")} p={3}>
+    <Box bg={useColorModeValue("gray.300", "gray.700")} p={3}>
       <Container
         display={"flex"}
         alignItems={"center"}
@@ -24,13 +24,13 @@ export const Header = () => {
         justifyContent={"space-between"}
       >
         <Heading>Logo</Heading>
-        <Stack direction={'row'} gap={2} alignItems={"center"}>
+        <Stack direction={"row"} gap={2} alignItems={"center"}>
           <Button onClick={toggleColorMode}>
-            {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
-          <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={'/sobre'}>Sobre</NavLink>
-          <NavLink to={'/login'}>Login</NavLink>
+          <NavLink to={'/'} end>Home</NavLink>
+          <NavLink to={'sobre'}>Sobre</NavLink>
+          <NavLink to={'login'}>Login</NavLink>
         </Stack>
       </Container>
     </Box>
