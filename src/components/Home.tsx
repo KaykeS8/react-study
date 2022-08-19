@@ -1,6 +1,11 @@
-import { Button } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Link to={"produto/notebook"}>Notebook</Link>
+      <Link to={"produto/smartphone"}>Smartphone</Link>
+    </div>
+  );
 };
