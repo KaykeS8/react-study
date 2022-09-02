@@ -1,14 +1,22 @@
-.fundo {
-  height: 50px;
-  width: 50px;
-  background-image: url('./img/foto.jpg');
-  border-radius: 50%;
-  overflow: hidden;
-  background-size: cover;
-  margin: 1rem;
-  cursor: pointer;
-}
-
 .active {
   color: cyan;
+}
+
+img {
+  maxo-width: 100%;
+  border-radius: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+.product {
+  cursor: pointer;
+  margin: 0 auto;
 }
