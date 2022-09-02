@@ -15,7 +15,7 @@ export function Login() {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/kjh");
+    navigate("usuario");
   }
 
   return (

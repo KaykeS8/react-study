@@ -1,14 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { Home } from "./components/Home";
-import { Login } from "./components/Login";
+import { Login } from "./components/Login/Login";
 import { NaoEcontrado } from "./components/NaoEcontrado";
 import { Sobre } from "./components/Sobre";
 import { Produto } from "./components/Produtos/Produto";
-import { ProdutoAvaliacao } from "./components/ProdutoAvaliacao";
-import { ProdutoCustomizado } from "./components/ProdutoCustomizado";
-import { ProdutoDescricao } from "./components/ProdutoDescricao";
 
 const App = () => {
   return (
@@ -19,11 +16,7 @@ const App = () => {
         <Route path="sobre" element={<Sobre />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NaoEcontrado />} />
-        <Route path="produto/:id/*" element={<Produto />}>
-          <Route path="" element={<ProdutoDescricao />} />
-          <Route path="avaliacao" element={<ProdutoAvaliacao />} />
-          <Route path="customizado" element={<ProdutoCustomizado />} />
-        </Route>
+        <Route path="produto/:id/*" element={<Produto />} />
       </Routes>
     </BrowserRouter>
   );
