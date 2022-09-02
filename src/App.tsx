@@ -1,25 +1,31 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Header } from "./components/Header/Header";
-import { Home } from "./components/Home";
-import { Login } from "./components/Login/Login";
-import { NaoEcontrado } from "./components/NaoEcontrado";
-import { Sobre } from "./components/Sobre";
-import { Produto } from "./components/Produtos/Produto";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Footer } from "./Components/Footer";
+import { Header } from "./Components/Header";
+import { Contato } from "./pages/Contato/Contato";
+import { PageNotFound } from "./pages/PageNotFound";
+import { Produtos } from "./pages/Produtos";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="sobre" element={<Sobre />} />
-        <Route path="login" element={<Login />} />
-        <Route path="*" element={<NaoEcontrado />} />
-        <Route path="produto/:id/*" element={<Produto />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Header />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Produtos scale={true} />} />
+            <Route path="contato" element={<Contato scale={true} />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 };
 
 export default App;
+
+//https://ranekapi.origamid.dev/json/api/
+//https://ranekapi.origamid.dev/json/api/produto/notebook
