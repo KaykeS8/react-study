@@ -4,8 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer } from "./Components/Footer";
 import { Header } from "./Components/Header";
 import { Contato } from "./pages/Contato/Contato";
-import { PageNotFound } from "./pages/PageNotFound";
-import { Produtos } from "./pages/Produtos";
+import { PageNotFound } from "./pages/PageNotFound/PageNotFound";
+import { Product } from "./pages/product";
+import { Produtos } from "./pages/Produtos/Produtos";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Produtos scale={true} />} />
             <Route path="contato" element={<Contato scale={true} />} />
+            <Route path="produtos/:product" element={<Product scale={true}/>} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
