@@ -31,7 +31,6 @@ export const Contato = ({scale}: PropsContato) => {
             </UnorderedList>
           </div>
         </SectionCont>
-
       </ScaleFade>
     </Container>
   );
