@@ -1,11 +1,12 @@
 import React from 'react';
-import $ from 'jquery';
+
 
 export const Contato = () => {
-  console.log($)
+
+  console.log('Renderizou')
   return (
     <div>
-      Contato
+      <h1>Contato</h1>
     </div>
   )
 }
